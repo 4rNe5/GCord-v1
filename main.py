@@ -5,7 +5,7 @@ from discord.ext import commands
 
 with open("./config.json", "r", encoding="utf-8") as E:
   config = json.loads(E.read())
-TOKEN = config['TOKEN']
+BOT_TOKEN = config['BOT_TOKEN']
 SERPAPI_KEY = config['SERPAPI_KEY']
 
 intents = discord.Intents.all()
@@ -60,4 +60,4 @@ async def gis(ctx, keyword: str):
         await ctx.send(f"**요청하신 키워드 '{keyword}'에 대한 이미지 검색 결과입니다:**")
         await ctx.send(image_url)
 
-bot.run(TOKEN)
+bot.run(BOT_TOKEN)
