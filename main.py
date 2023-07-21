@@ -43,7 +43,7 @@ async def gs(ctx, keyword: str):
 @bot.command()
 async def gis(ctx, keyword: str):
     await ctx.send("**Searching...**")
-    # SerpApi - Google 이미지 검색으로 리퀘스트 보냄
+    # SerpApi - Google Image Search로 리퀘스트 보냄
     params = {
         "api_key": SERPAPI_KEY,
         "q": keyword,
