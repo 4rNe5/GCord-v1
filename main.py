@@ -4,7 +4,8 @@ import discord
 from discord.ext import commands
 
 with open("./config.json", "r", encoding="utf-8") as E:
-  config = json.loads(E.read())
+    config = json.loads(E.read())
+
 BOT_TOKEN = config['BOT_TOKEN']
 SERPAPI_KEY = config['SERPAPI_KEY']
 
@@ -12,8 +13,9 @@ intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="/", intents=intents, help_command=None)
 
 @bot.command()
-async def gs(ctx, keyword: str):
-    await ctx.send("**Searching...**")
+async def gs(ctx, *args):
+    keyword = " ".join(args)
+    mes = await ctx.send(f"**Searching '{keyword}' On Google...**")
     search_results = []
 
     # SerpApi - Google search로 리퀘스트 보냄
@@ -35,14 +37,17 @@ async def gs(ctx, keyword: str):
 
     # Send all search results to the Discord chat
     if search_results:
+        await ctx.message.delete()
         await ctx.send(f"**요청하신 키워드 '{keyword}'에 대한 검색 결과입니다:**")
         await ctx.send("\n".join(search_results))
     else:
+        await ctx.message.delete()
         await ctx.send(f"**요청하신 키워드 '{keyword}'에 대한 검색 결과를 찾을 수 없습니다.**")
 
 @bot.command()
-async def gis(ctx, keyword: str):
-    await ctx.send("**Searching...**")
+async def gis(ctx, *args):
+    keyword = " ".join(args)
+    await ctx.send(f"**Searching '{keyword}' Image On Google...**")
     # SerpApi - Google Image Search로 리퀘스트 보냄
     params = {
         "api_key": SERPAPI_KEY,
@@ -57,7 +62,8 @@ async def gis(ctx, keyword: str):
     # Send the first image to the Discord chat
     if results:
         image_url = results[0].get("original")
+        await ctx.message.delete()
         await ctx.send(f"**요청하신 키워드 '{keyword}'에 대한 이미지 검색 결과입니다:**")
         await ctx.send(image_url)
 
-bot.run(BOT_TOKEN)
+bot.run(BOT_TOKEN) # 봇 실행
