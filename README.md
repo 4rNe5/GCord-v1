@@ -1,4 +1,4 @@
-# GCord With SerpAPI (.V1)
+# GCord Version.1
 ### Now Im Developing New Version Of GCord V2 With Google Custom Search Engine.
 
 ***
@@ -22,4 +22,4 @@ This Bot Can Show Google Search result on the Server!**
   "SERPAPI_KEY" : "{Your SerpAPI API Key Here}"
 }
 ```
-3. Run ```main.py``` and Use Your Bot!
+3. Run ```main.py``` and Use **GCord**!
