@@ -17,7 +17,7 @@ intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="/", intents=intents, help_command=None)
 
 @bot.command()
-async def gs(ctx, *args):
+async def gs(ctx, *args): # Google Search Command
     keyword = " ".join(args)
     mes = await ctx.send(f"**Searching '{keyword}' On Google...**")
     search_results = []
@@ -49,7 +49,7 @@ async def gs(ctx, *args):
         await ctx.send(f"**요청하신 키워드 '{keyword}'에 대한 검색 결과를 찾을 수 없습니다.**")
 
 @bot.command()
-async def gis(ctx, *args):
+async def gis(ctx, *args): # Google Image Search Command
     keyword = " ".join(args)
     await ctx.send(f"**Searching '{keyword}' Image On Google...**")
     # SerpApi - Google Image Search로 리퀘스트 보냄
