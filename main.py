@@ -1,3 +1,7 @@
+# Original Source Code Made By 4rNe5
+# This Code is MIT Licence
+# Thanks For Using This Code
+
 import requests
 import json
 import discord
