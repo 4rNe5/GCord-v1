@@ -22,7 +22,7 @@ async def gs(ctx, *args): # Google Search Command
     mes = await ctx.send(f"**Searching '{keyword}' On Google...**")
     search_results = []
 
-    # SerpApi - Google search로 리퀘스트 보냄
+    # SerpApi - Google search로 검색 리퀘스트 보냄
     params = {
         "api_key": SERPAPI_KEY,
         "q": keyword,
