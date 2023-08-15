@@ -56,7 +56,7 @@ async def gis(ctx, *args): # Google Image Search Command
     params = {
         "api_key": SERPAPI_KEY,
         "q": keyword,
-        "tbm": "isch"  # 이미지 검색을 위한 매개변수
+        "tbm": "isch"  # 매개변수 - 검색용
     }
     response = requests.get("https://serpapi.com/search", params=params)
 
