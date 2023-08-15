@@ -42,7 +42,7 @@ async def gs(ctx, *args): # Google Search Command
     # Send all search results to the Discord chat
     if search_results:
         await ctx.message.delete()
-        await ctx.send(f"**요청하신 키워드 '{keyword}'에 대한 검색 결과입니다 :**")
+        await ctx.send(f"**요청하신 키워드인 '{keyword}'에 대한 검색 결과입니다 :**")
         await ctx.send("\n".join(search_results))
     else:
         await ctx.message.delete()
