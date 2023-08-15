@@ -46,7 +46,7 @@ async def gs(ctx, *args): # Google Search Command
         await ctx.send("\n".join(search_results))
     else:
         await ctx.message.delete()
-        await ctx.send(f"**요청하신 키워드 '{keyword}'에 대한 검색 결과를 찾을 수 없습니다.**")
+        await ctx.send(f"**요청하신 키워드인 '{keyword}'에 대한 검색 결과를 찾을 수 없습니다.**")
 
 @bot.command()
 async def gis(ctx, *args): # Google Image Search Command
