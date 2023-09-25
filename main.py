@@ -1,6 +1,6 @@
 # Source Code Made By 4rNe5
 # This Code is MIT Licence
-# Thanks For Using This Code
+# Special Thanks For babihoba(@8954sood) & Jombi(@jombidev)
 
 import requests
 import json
