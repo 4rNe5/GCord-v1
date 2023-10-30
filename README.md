@@ -22,4 +22,4 @@ This Bot Can Show Google Search result on the Server!**
   "SERPAPI_KEY" : "{Your SerpAPI API Key Here}"
 }
 ```
-3. Run ```main.py``` and Use **GCord**!
+3. Run ```python3 main.py``` and Use **GCord**!

@@ -1,4 +1,4 @@
-# Source Code Made By 4rNe5
+# Source Code Made By 4rNe5(@4rNe5)
 # This Code is MIT Licence
 # Special Thanks For babihoba(@8954sood) & Jombi(@jombidev)
 
@@ -15,6 +15,12 @@ SERPAPI_KEY = config['SERPAPI_KEY']
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="/", intents=intents, help_command=None)
+
+
+@bot.event
+async def on_ready():
+  await bot.change_presence(activity=discord.Game(name="Google 검색"))
+
 
 @bot.command()
 async def gs(ctx, *args): # Google Search Command
@@ -48,26 +54,39 @@ async def gs(ctx, *args): # Google Search Command
         await ctx.message.delete()
         await ctx.send(f"**요청하신 키워드인 '{keyword}'에 대한 검색 결과를 찾을 수 없습니다.**")
 
+
 @bot.command()
-async def gis(ctx, *args): # Google Image Search Command
-    keyword = " ".join(args)
-    await ctx.send(f"**Searching '{keyword}' Image On Google...**")
-    # SerpApi - Google Image Search로 리퀘스트 보냄
-    params = {
-        "api_key": SERPAPI_KEY,
-        "q": keyword,
-        "tbm": "isch"  # 매개변수 - 검색용
-    }
-    response = requests.get("https://serpapi.com/search", params=params)
+async def gis(ctx, *args):  # Google Image Search Command
+  count = 1  # Default image count
+  keyword_args = args
 
-    # JSON response 파싱하기
-    results = response.json().get("images_results")
+  # If the first argument is a number, use it as the count and remove it from the keyword arguments
+  if args and args[0].isdigit():
+    count = int(args[0])
+    keyword_args = args[1:]
 
-    # Send the first image to the Discord chat
-    if results:
-        image_url = results[0].get("original")
-        await ctx.message.delete()
-        await ctx.send(f"**요청하신 키워드인 '{keyword}'에 대한 이미지 검색 결과입니다 :**")
+  keyword = " ".join(keyword_args)
+
+  await ctx.send(f"**Searching '{keyword}' Image On Google...**")
+
+  params = {
+    "api_key": SERPAPI_KEY,
+    "q": keyword,
+    "tbm": "isch"
+  }
+
+  response = requests.get("https://serpapi.com/search", params=params)
+
+  results = response.json().get("images_results")
+
+  if results:
+    await ctx.message.delete()
+    await ctx.send(f"**요청하신 키워드인 '{keyword}'에 대한 이미지 검색 결과(__{count}장__)입니다 :**")
+
+    for result in results[:count]:
+      image_url = result.get("original")
+      if image_url:
         await ctx.send(image_url)
+
 
 bot.run(BOT_TOKEN) # 봇 실행
